@@ -1,7 +1,10 @@
-
 FROM python:3.9
 
-RUN groupadd -r appgroup && useradd -r -g appgroup appuser
+# Choose a UID and GID (e.g., 1001)
+ARG APP_UID=1001
+ARG APP_GID=1001
+
+RUN groupadd -r --gid $APP_GID appgroup && useradd -r -u $APP_UID -g appgroup appuser
 
 WORKDIR /app
 
